@@ -1,0 +1,25 @@
+﻿Ceci est un test, non?
+// QUESTIONS
+"Bien sûr Yaki."
+"Vous attendiez-vous tant pour ce sprint?"
+"Au revoir popó."
+// Si vous avez répondu à la réponse 1-1
+Eh bien, vous pouvez tirer d'autres cours pour approfondir cela.
+// Si vous avez répondu à RÉPONSE 1-2
+Je pensais que vous n'aviez suivi que ce cours.
+// Si vous avez répondu aux réponses 1 à 3
+Nani?
+// CONTINUER LA RÉPONSE 1-1, LA RÉPONSE 1-2, LA RÉPONSE 1-3
+Ce n'est pas le moment de jouer aux idiots, de sortir des autres parcours.
+Je sais que vous vous trompez dans les autres cours, alors ...
+Retraite extraordinaire!
+// QUESTIONS
+"Je ne suis pas prêt, attends!"
+"Je prends d'autres cours professionnels."
+"! ZA WARUDOOOOOOOOOOO!"
+// Si vous avez répondu à RÉPONSE 2-1
+La demande de retrait s'est bien déroulée.
+// Si vous avez répondu à RÉPONSE 2-2
+Route vers Baika.
+// Si vous avez répondu à RÉPONSE 2-3
+Omae wa mo shinde iru.

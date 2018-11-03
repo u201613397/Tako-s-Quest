@@ -1,0 +1,25 @@
+﻿¿Esto es una prueba, verdad?
+//PREGUNTAS
+“Por supuesto Yaki.”
+“¿Esperabas tanto para este sprint?”
+“Adiós popó.”
+//Si respondio la RESPUESTA 1-1
+Pues podrías jalar otros cursos para avanzar más este.
+//Si respondio la RESPUESTA 1-2
+Pensaba que solo llevabas este curso.
+//Si respondio la RESPUESTA 1-3
+¿Nani?
+//CONTINUA DE RESPUESTA 1-1, RESPUESTA 1-2, RESPUESTA 1-3
+No es momento para hacerse el tonto, retírate de los otros cursos.
+Sé que estás mal en los otros cursos, así que...
+¡Retiro Extraordinario!
+//PREGUNTAS
+“No estoy listo, ¡espera!”
+“Llevo otros cursos profe.”
+“!ZA WARUDOOOOOOOOOOO!”
+//Si respondio la RESPUESTA 2-1
+La solicitud de retiro ha procedido con éxito.
+//Si respondio la RESPUESTA 2-2
+Road to baika.
+//Si respondio la RESPUESTA 2-3
+Omae wa mo shinde iru.

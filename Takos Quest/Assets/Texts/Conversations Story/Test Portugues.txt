@@ -1,0 +1,25 @@
+﻿Isso é um teste, certo?
+// PERGUNTAS
+"Claro, Yaki."
+"Você esperava muito por esse sprint?"
+"Adeus popó."
+// Se você respondeu ANSWER 1-1
+Bem, você poderia puxar outros cursos para isso.
+// Se você respondeu RESPOSTA 1-2
+Eu pensei que você só fez esse curso.
+// Se você respondeu ANSWER 1-3
+Nani?
+// CONTINUE A RESPOSTA 1-1, RESPOSTA 1-2, RESPOSTA 1-3
+Este não é o momento de ficar mudo, sair dos outros cursos.
+Eu sei que você está errado nos outros cursos, então ...
+Retiro Extraordinário!
+// PERGUNTAS
+"Eu não estou pronto, espere!"
+"Eu faço outros cursos profissionais."
+"! ZA WARUDOOOOOOOOOOO!"
+// Se você respondeu RESPOSTA 2-1
+O pedido de retirada foi realizado com sucesso.
+// Se você respondeu RESPOSTA 2-2
+Estrada para baika.
+// Se você respondeu RESPOSTA 2-3
+Omae wa mo shinde iru.
