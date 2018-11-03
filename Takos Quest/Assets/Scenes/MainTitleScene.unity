@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeSoundPref: MusicValue
-  maxSoundValue: 1
+  maxSoundValue: 0.6
   sourceMusic: {fileID: 1284689578}
   allClipsToPlay: []
   canPlayClip: 1
