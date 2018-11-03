@@ -11,6 +11,15 @@ public class LevelButtonControl : MonoBehaviour {
 	public int[] requirementLevelToPlay;
 	public bool canSelectLevel;
 	public string levelStatePlayerPref;
+
+	[Header("Conversation Variables")]
+	public int haveInitialConversation;
+	public int haveFinalConversation;
+	public LoadingControl storyScene;
+	public LoadingControl gameplayScene;
+
+	[Header("Sound Variables")]
+	public PlaySoundControl allSounds;
 	// Use this for initialization
 	void Awake () {
 		imageButton = GetComponent<Image> ();
@@ -67,6 +76,19 @@ public class LevelButtonControl : MonoBehaviour {
 		imageButton.color = colorText;
 	}
 	public void SaveLevelVariables(){
-		PlayerPrefs.SetInt ("CurrentLevel", levelValue);
+		if (canSelectLevel == true) {
+			allSounds.PlayClip (0);
+			PlayerPrefs.SetInt ("ConversationMoment",0);
+			PlayerPrefs.SetInt ("CurrentLevel", levelValue);
+			PlayerPrefs.SetInt ("InitialStoryConversation", haveInitialConversation);
+			PlayerPrefs.SetInt ("FinalStoryConversation", haveFinalConversation);
+			if (haveInitialConversation == 0) {
+				gameplayScene.ActivateLoadingCanvas ();
+			} else {
+				storyScene.ActivateLoadingCanvas ();
+			}
+		} else {
+			allSounds.PlayClip (1);
+		}
 	}
 }

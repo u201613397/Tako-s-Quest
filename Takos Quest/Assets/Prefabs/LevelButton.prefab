@@ -63,6 +63,11 @@ MonoBehaviour:
   requirementLevelToPlay: 
   canSelectLevel: 0
   levelStatePlayerPref: 
+  haveInitialConversation: 1
+  haveFinalConversation: 1
+  storyScene: {fileID: 0}
+  gameplayScene: {fileID: 0}
+  allSounds: {fileID: 0}
 --- !u!114 &114079736417894392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,8 +107,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ActivateLoadingCanvas
+      - m_Target: {fileID: 114057996195146086}
+        m_MethodName: SaveLevelVariables
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
