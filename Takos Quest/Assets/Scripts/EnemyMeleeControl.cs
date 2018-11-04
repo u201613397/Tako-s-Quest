@@ -16,6 +16,9 @@ public class EnemyMeleeControl : MonoBehaviour {
 	public bool affectByGravity;
 	public float currentGravity = 0;
 	public float speedAceleration = 0;
+
+	[Header("Container Variables")]
+	public AllEnemyMeleeContainerControl enemyContainer;//04-11-2018 INCREMENTAR NÚMERO DE ENEMIGOS DERROTADOS
 	// Use this for initialization
 	void Start () {
 		rbEnemy = GetComponent<Rigidbody2D> ();
@@ -53,7 +56,9 @@ public class EnemyMeleeControl : MonoBehaviour {
 		//rbEnemy.gravityScale = 1F;
 		//Invoke ("Die", 1f);
 	}
-	void Die(){
+	public void Die(){
+		print ("entra al die");
+		enemyContainer.SendIncreaseEnemiesDefeated ();//04-11-2018 INCREMENTAR NÚMERO DE ENEMIGOS DERROTADOS
 		Destroy(gameObject);
 	}
 }

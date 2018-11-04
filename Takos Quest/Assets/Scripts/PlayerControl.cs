@@ -38,6 +38,9 @@ public class PlayerControl : MonoBehaviour {
 
 	[Header("Sound Variables")]
 	public PlaySoundControl playerSoundEffects;//15-09-2018
+
+	[Header("Manager Variables")]
+	public GameManagerControl gmManager;//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 	// Use this for initialization
 	void Start () {
 		rbPlayer = GetComponent<Rigidbody2D> ();
@@ -113,10 +116,12 @@ public class PlayerControl : MonoBehaviour {
 			if (secondPressPos.y - firstPressPos.y > 0) {//up swipe
 				if (isUpGrounded == false && isGrounded == true) {
 					OnSwipeUp ();
+					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			} else if (secondPressPos.y - firstPressPos.y < 0) {//Down swipe
 				if (isDownGrounded == false && isGrounded == true) {
 					OnSwipeDown ();
+					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			}
 			firstPressPos = secondPressPos;
@@ -125,10 +130,12 @@ public class PlayerControl : MonoBehaviour {
 			if (secondPressPos.x - firstPressPos.x > 0) {//Right swipe
 				if (isRightGrounded == false && isGrounded == true) {
 					OnSwipeRight ();
+					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			} else if (secondPressPos.x - firstPressPos.x < 0) {//Left swipe
 				if (isLeftGrounded == false && isGrounded == true) {
 					OnSwipeLeft ();
+					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			}
 			firstPressPos = secondPressPos;

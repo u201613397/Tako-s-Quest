@@ -36,11 +36,18 @@ public class GameManagerControl : MonoBehaviour {
 	public int winCondition;
 	public int[] allLoseCondition;
 
+	[Header("Scenes Variables")]
+	public LoadingControl conversationScene;
+	public LoadingControl mapScene;
+	public LoadingControl gameplayScene;
+
 	[Header("Other Variables")]
 	public bool isTesting;
 
 	void Awake () {
 		GetLevelInformation ();
+		CheckMovements ();
+		CheckEnemiesDefeated ();
 	}
 
 	void Start () {
@@ -61,6 +68,7 @@ public class GameManagerControl : MonoBehaviour {
 		GameObject tmp = Instantiate (playerToCreate, tmpPosition, transform.rotation);
 		player = tmp.GetComponent<PlayerControl> ();
 		tmp.GetComponent<PlayerControl> ().playerSoundEffects = playerSoundEffects;
+		tmp.GetComponent<PlayerControl> ().gmManager = this.gameObject.GetComponent<GameManagerControl>();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 	}
 
 	void CalculatePassedTime(){
@@ -85,6 +93,7 @@ public class GameManagerControl : MonoBehaviour {
 			if (levelTime < 0) {
 				levelTime = 0f;
 				isGameOver = true;
+				CheckGameState ();
 			}
 
 		}
@@ -106,12 +115,15 @@ public class GameManagerControl : MonoBehaviour {
 		}
 	}
 	public void IncreaseEnemiesDefeated(){
+		print ("entra");
 		currentEnemiesDefeat = currentEnemiesDefeat + 1;
 		CheckEnemiesDefeated ();
 	}
 	public void CheckEnemiesDefeated(){
-		if (currentEnemiesDefeat >= enemiesToDefeat) {
+		enemiesDeadsText.text = currentEnemiesDefeat.ToString () + "/" + enemiesToDefeat.ToString ();
+		if (currentEnemiesDefeat >= enemiesToDefeat && winCondition == 1) {
 			isWin = true;
+			CheckGameState ();
 		}
 	}
 	public void IncreaseMovements(){
@@ -119,8 +131,30 @@ public class GameManagerControl : MonoBehaviour {
 		CheckMovements ();
 	}
 	public void CheckMovements(){
-		if (currentNumbOfMovements >= maxNumbOfMovements) {
+		string tmp = "";
+		if (maxNumbOfMovements != 0) {
+			tmp = maxNumbOfMovements.ToString ();
+		} else {
+			tmp = "-";
+		}
+		numbMovementesText.text = currentNumbOfMovements.ToString () + "/" + tmp;
+		if (currentNumbOfMovements >= maxNumbOfMovements && maxNumbOfMovements != 0) {
 			isGameOver = true;
+			CheckGameState ();
+		}
+	}
+	public void CheckGameState(){
+		if (isWin == true) {
+			int tmp = PlayerPrefs.GetInt ("FinalStoryConversation");
+			if (tmp == 0) {
+				mapScene.ActivateLoadingCanvas ();
+			} else {
+				PlayerPrefs.SetInt ("ConversationMoment", 1);
+				conversationScene.ActivateLoadingCanvas ();
+			}
+		}
+		if (isGameOver == true) {
+			gameplayScene.ActivateLoadingCanvas ();
 		}
 	}
 }

@@ -1134,6 +1134,69 @@ Transform:
   m_Father: {fileID: 1785841052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &825635684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 825635685}
+  - component: {fileID: 825635686}
+  m_Layer: 0
+  m_Name: ActivateTextAtLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &825635685
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825635684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1154718968}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825635686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825635684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5684cc9599c544438dc0925b03b62f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrayOfArchives:
+  - {fileID: 4900000, guid: 622c9f79858c3954cb85765537976ad3, type: 3}
+  - {fileID: 4900000, guid: f16772f2768ad7440a5e214aa8a58a74, type: 3}
+  - {fileID: 4900000, guid: d0429aa1d45f26942bb1064e2e380142, type: 3}
+  - {fileID: 4900000, guid: c2a9348e8df28ca4cbd0b6b2bb71e664, type: 3}
+  - {fileID: 4900000, guid: 5563587c986e0a1408c667f0c638a938, type: 3}
+  - {fileID: 4900000, guid: 31698277d853b734086c9dc0279b81a6, type: 3}
+  - {fileID: 4900000, guid: 68871b795dcf3764ba09b5dde44a2e72, type: 3}
+  - {fileID: 4900000, guid: 129b3f759033a47469cf7a4ba2bc0e9c, type: 3}
+  startLine: 0
+  endLine: 2
+  isFirstDialogue: 1
+  isFinalDialogue: 1
+  textBoxManagerTmp: {fileID: 2028716865}
+  currentLanguage: 0
+  portraitPoseToSend: 0
+  portraitCharacterToSend: 0
+  portraitEmotionToSend: 0
+  haveResponse: 0
+  startAnswerText: 0
+  positionsToSend: 
+  destroyAfterActivate: 0
+  isAPlayerName: 0
 --- !u!1 &854432088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1615,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2028716866}
+  - {fileID: 825635685}
   m_Father: {fileID: 774234658}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3343,6 +3408,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2028716864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2028716866}
+  - component: {fileID: 2028716865}
+  m_Layer: 0
+  m_Name: TextBoxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2028716865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2028716864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609cfd8cde73a6a46b4e503d0f0b9a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtArchive: {fileID: 0}
+  dialogueLines: []
+  currentLine: 0
+  endAtLine: 0
+  dialogueText: {fileID: 1920662538}
+  isAPlayerName: 0
+  realLineWithPlayerName: 
+  playerNameString: 
+  textBox: {fileID: 2080070378}
+  isActiveTextBox: 0
+  recapitulationText: {fileID: 55985318}
+  controlRecapButton: {fileID: 1460046782}
+  typeSpeed: 0.03
+  currentCharacter: 0
+  portraitAnimationToSend: 0
+  portraitEmotionToSend: 0
+  portraitPoseToSend: 0
+  allCharactersPortraits: {fileID: 44548891}
+  arrayOfActivateTexts:
+  - {fileID: 825635686}
+  currentActivateText: 0
+  timeForNextDialogue: 0
+  nextDialogue: 0
+  positionsToSendAfterAnswer: 
+  haveResponse: 0
+  answersContainer: {fileID: 652806667}
+  answersTexts:
+  - 
+  - 
+  - 
+  loadLevel: {fileID: 1984318159}
+  loadMap: {fileID: 1411893109}
+  currentMomentConversation: 0
+  conversationSounds: {fileID: 242989970}
+  cons: {fileID: 0}
+--- !u!4 &2028716866
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2028716864}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1154718968}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042193612
 GameObject:

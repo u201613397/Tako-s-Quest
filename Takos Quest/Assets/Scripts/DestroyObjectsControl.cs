@@ -17,7 +17,10 @@ public class DestroyObjectsControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == objectToDestroyTag) {
-			Destroy (other.gameObject);
+			if (other.GetComponent<EnemyMeleeControl> () != null) {//04-11-2018 INCREMENTAR NÚMERO DE ENEMIGOS
+				other.GetComponent<EnemyMeleeControl> ().Die ();
+			}//04-11-2018 INCREMENTAR NÚMERO DE ENEMIGOS
+			//Destroy (other.gameObject);
 		}
 	}
 }
