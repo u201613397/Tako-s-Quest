@@ -18,8 +18,18 @@ public class LevelButtonControl : MonoBehaviour {
 	public LoadingControl storyScene;
 	public LoadingControl gameplayScene;
 
+	[Header("Level Information Variables")]
+	public float timeToReachLevel;
+	public int numbOfEnemiesToDefeat;
+	public int maxNumbOfMovements;
+
+	public int winCondition;
+	public int[] allLoseCondition;
+
 	[Header("Sound Variables")]
 	public PlaySoundControl allSounds;
+
+
 	// Use this for initialization
 	void Awake () {
 		imageButton = GetComponent<Image> ();
@@ -78,10 +88,22 @@ public class LevelButtonControl : MonoBehaviour {
 	public void SaveLevelVariables(){
 		if (canSelectLevel == true) {
 			allSounds.PlayClip (0);
-			PlayerPrefs.SetInt ("ConversationMoment",0);
+			PlayerPrefs.SetInt ("ConversationMoment", 0);
 			PlayerPrefs.SetInt ("CurrentLevel", levelValue);
 			PlayerPrefs.SetInt ("InitialStoryConversation", haveInitialConversation);
 			PlayerPrefs.SetInt ("FinalStoryConversation", haveFinalConversation);
+
+			PlayerPrefs.SetInt ("EnemiesToDefeat", numbOfEnemiesToDefeat);
+			PlayerPrefs.SetFloat ("LevelTime", timeToReachLevel);
+			PlayerPrefs.SetInt ("MaxNumbOfMovements", maxNumbOfMovements);
+
+			PlayerPrefs.SetInt ("WinCondition", winCondition);
+			for (int i = 0; i < allLoseCondition.Length; i++) {
+				string tmp = "LoseCondition" + (i + 1).ToString ();
+				PlayerPrefs.SetInt (tmp, allLoseCondition[i]);
+			}
+			PlayerPrefs.SetInt ("NumbOfLoseConditions", allLoseCondition.Length);
+
 			if (haveInitialConversation == 0) {
 				gameplayScene.ActivateLoadingCanvas ();
 			} else {

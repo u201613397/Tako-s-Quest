@@ -338,6 +338,21 @@ Prefab:
       propertyPath: requirementLevelToPlay.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: allSounds
+      value: 
+      objectReference: {fileID: 1429838947}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: storyScene
+      value: 
+      objectReference: {fileID: 1697508949}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: gameplayScene
+      value: 
+      objectReference: {fileID: 1346803852}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0
@@ -477,6 +492,21 @@ Prefab:
       propertyPath: requirementLevelToPlay.Array.data[1]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: allSounds
+      value: 
+      objectReference: {fileID: 1429838947}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: storyScene
+      value: 
+      objectReference: {fileID: 1697508949}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: gameplayScene
+      value: 
+      objectReference: {fileID: 1346803852}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0
@@ -781,6 +811,21 @@ Prefab:
       propertyPath: requirementLevelToPlay.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: allSounds
+      value: 
+      objectReference: {fileID: 1429838947}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: storyScene
+      value: 
+      objectReference: {fileID: 1697508949}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: gameplayScene
+      value: 
+      objectReference: {fileID: 1346803852}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0
@@ -1255,7 +1300,7 @@ MonoBehaviour:
   sourceMusic: {fileID: 1429838948}
   allClipsToPlay:
   - {fileID: 8300000, guid: c435b114d77a22d4aab3a1dddfd0e64c, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 9726420d503848647a8c64eec5e36108, type: 3}
   canPlayClip: 1
 --- !u!82 &1429838948
 AudioSource:
@@ -1491,6 +1536,21 @@ Prefab:
       propertyPath: requirementLevelToPlay.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: allSounds
+      value: 
+      objectReference: {fileID: 1429838947}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: storyScene
+      value: 
+      objectReference: {fileID: 1697508949}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: gameplayScene
+      value: 
+      objectReference: {fileID: 1346803852}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0
@@ -1732,11 +1792,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1718288453}
     m_Modifications:
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 224442055863183476, guid: 4c3bcf3066100af4da79460836bd4204,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1827,36 +1882,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: storyScene
       value: 
       objectReference: {fileID: 1697508949}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: gameplayScene
       value: 
-      objectReference: {fileID: 543951083}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
+      objectReference: {fileID: 1346803852}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SaveLevelVariables
-      objectReference: {fileID: 0}
-    - target: {fileID: 114079736417894392, guid: 4c3bcf3066100af4da79460836bd4204,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: allSounds
+      value: 
+      objectReference: {fileID: 1429838947}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0

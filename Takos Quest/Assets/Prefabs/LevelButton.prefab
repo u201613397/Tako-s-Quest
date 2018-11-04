@@ -67,6 +67,11 @@ MonoBehaviour:
   haveFinalConversation: 1
   storyScene: {fileID: 0}
   gameplayScene: {fileID: 0}
+  timeToReachLevel: 180
+  numbOfEnemiesToDefeat: 6
+  maxNumbOfMovements: 0
+  winCondition: 1
+  allLoseCondition: 01000000
   allSounds: {fileID: 0}
 --- !u!114 &114079736417894392
 MonoBehaviour:
