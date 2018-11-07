@@ -145,6 +145,9 @@ public class GameManagerControl : MonoBehaviour {
 	}
 	public void CheckGameState(){
 		if (isWin == true) {
+			int level = PlayerPrefs.GetInt ("CurrentLevel");
+			string passedLevelPref = "Level" + level.ToString () + "Passed";
+			PlayerPrefs.SetInt (passedLevelPref, 1);
 			int tmp = PlayerPrefs.GetInt ("FinalStoryConversation");
 			if (tmp == 0) {
 				mapScene.ActivateLoadingCanvas ();

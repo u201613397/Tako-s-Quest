@@ -30,7 +30,8 @@ public class MapContainerControl : MonoBehaviour {
 	public GameObject enemyToCreate;//15-09-2018
 	// Use this for initialization
 	void Start () {
-		StartFunctions (0);
+		int level = PlayerPrefs.GetInt ("CurrentLevel");
+		StartFunctions (level-1);
 	}
 	
 	public void StartFunctions(int currentLevel){
