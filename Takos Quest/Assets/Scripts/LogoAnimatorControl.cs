@@ -20,8 +20,8 @@ public class LogoAnimatorControl : MonoBehaviour {
 	void Start () {
 		logoAnimator = GetComponent<Animator> ();
 		countTimer = true;
-		PlayerPrefs.SetInt ("MusicValue", 1);//28-04-2017
-		PlayerPrefs.SetInt ("SoundsValue", 1);//28-04-2017    
+		PlayerPrefs.SetFloat ("MusicValue", 1);//28-04-2017
+		PlayerPrefs.SetFloat ("SoundValue", 1);//28-04-2017    
 		//PlayerPrefs.SetInt("CurrentCoins",50000);
 		//VideoBuild();
 	}
