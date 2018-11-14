@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour {
 	private int groundLayer;//04-09-2018 NUMERO DE LAYER DE LOS MUROS
 
 	public int currentDirectionDetector;//08-09-2018 EVITAR CAMBIAR DIRECCION
+	public bool canBeAffectedByMovement;
 
 	[Header("Sound Variables")]
 	public PlaySoundControl playerSoundEffects;//15-09-2018
@@ -111,6 +112,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void CheckSwipe(){//15-09-2018
 		//Check if Vertical swipe
+		//print("entra al chequeo");
 		if (VerticalMove () > swipeSensibility && VerticalMove () > HorizontalValMove ()) {
 			//Debug.Log("Vertical");
 			if (secondPressPos.y - firstPressPos.y > 0) {//up swipe
@@ -145,6 +147,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	float VerticalMove(){
+		//print ("vertical move");
 		return Mathf.Abs(secondPressPos.y - firstPressPos.y);
 	}
 
@@ -189,20 +192,29 @@ public class PlayerControl : MonoBehaviour {
 		isUpGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[0].position, whatIsGround);
 		RaycastHit2D hitInfoUp = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[0].transform.position,whatIsGround);
 
-		/*
-		if (hitInfoUp.collider != null) {//21-06-2016
-			verticalSpeed = 0;//21-06-2016
-		}//21-06-2016
-		*/
+		if (isUpGrounded == true && hitInfoUp.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+			OnSwipeDown ();
+		}
 
 		isDownGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[1].position, whatIsGround);
 		RaycastHit2D hitInfoDown = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[1].transform.position,whatIsGround);
-
+	
 		isLeftGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[2].position, whatIsGround);
 		RaycastHit2D hitInfoLeft = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[2].transform.position,whatIsGround);
+	
+
+		if (isLeftGrounded == true && hitInfoLeft.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+			OnSwipeDown ();
+		}
 
 		isRightGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[3].position, whatIsGround);
 		RaycastHit2D hitInfoRight = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[3].transform.position,whatIsGround);
+
+
+		if (isRightGrounded == true && hitInfoRight.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+			OnSwipeDown ();
+		}
+
 
 		switch (currentDirectionDetector) {
 		case 1:
@@ -226,10 +238,7 @@ public class PlayerControl : MonoBehaviour {
 			}
 			break;
 		}
-		/*
-		isGrounded = Physics2D.Linecast (this.transform.position, groundCheck.position, whatIsGround);
-		RaycastHit2D hitInfo = Physics2D.Linecast (transform.position, groundCheck.transform.position,whatIsGround);
-*/
+	
 	}//04-09-2018 DETECTAR PAREDES
 
 	public void DetectEndMovement(){
@@ -280,7 +289,30 @@ public class PlayerControl : MonoBehaviour {
 
 	public void PlaySoundAttack(){//15-09-2018
 		int tmp = Random.Range (0, playerSoundEffects.allClipsToPlay.Count);
-		print (tmp);
+		//print (tmp);
 		playerSoundEffects.PlayClip (tmp);
 	}//15-09-2018
+
+	public void Dead(){
+		gmManager.isGameOver = true;
+		gmManager.CheckGameState ();
+	}
+	public void SimulateChangedDirection(int x, int y){
+		if (x == 1 && y == 0) {
+			OnSwipeRight ();
+		}
+		if (x == -1 && y == 0) {
+			OnSwipeLeft ();
+		}
+		if (x == 0 && y == 1) {
+			OnSwipeUp ();
+		}
+		if (x == 0 && y == -1) {
+			if (yDirection != -1) {
+				print ("Efectua el cambio");
+				//SetGrounded ();
+				OnSwipeDown ();
+			}
+		}
+	}
 }

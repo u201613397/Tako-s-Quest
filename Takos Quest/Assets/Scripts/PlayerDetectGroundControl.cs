@@ -16,7 +16,8 @@ public class PlayerDetectGroundControl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.GetComponent<MapPartControl> ().valueInMatrix == 1) {
+		if (other.gameObject.GetComponent<MapPartControl> ().valueInMatrix == 1 || 
+			other.gameObject.GetComponent<MapPartControl> ().valueInMatrix == 9) {
 			playerFather.SetGrounded ();
 		}
 	}

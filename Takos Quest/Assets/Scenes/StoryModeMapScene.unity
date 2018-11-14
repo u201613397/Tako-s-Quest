@@ -1146,6 +1146,21 @@ Prefab:
       propertyPath: gameplayScene
       value: 
       objectReference: {fileID: 1346803852}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: haveInitialConversation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: haveFinalConversation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057996195146086, guid: 4c3bcf3066100af4da79460836bd4204,
+        type: 2}
+      propertyPath: numbOfEnemiesToDefeat
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c3bcf3066100af4da79460836bd4204, type: 2}
   m_IsPrefabParent: 0

@@ -14,12 +14,19 @@ public class GameManagerControl : MonoBehaviour {
 	public Text enemiesDeadsText;
 	public int enemiesToDefeat;
 	public int currentEnemiesDefeat;
+	public AllEnemyMeleeContainerControl allEnemyMeleeContainer;
+	public AllEnemyBombContainerControl allEnemyBombContainer;
+
+	[Header("Trap Variables")]
+	public AllDeathTrapContainer allDeathTrapContainer;
+
+	[Header("Block Variables")]
+	public AllChangeDirectionBlockContainer allChangeDirectionBlockContainer;
 
 	[Header("Movements Variables")]
 	public Text numbMovementesText;
 	public int maxNumbOfMovements;
 	public int currentNumbOfMovements;
-	public AllEnemyMeleeContainerControl allEnemyMeleeContainer;
 
 	[Header("Time Variables")]
 	public Text timeText;
@@ -61,6 +68,19 @@ public class GameManagerControl : MonoBehaviour {
 
 	public void SendCreateEnemyMelee(int x, int y, float xDistance, float yDistance){
 		allEnemyMeleeContainer.CreateEnemyMelee (x, y, xDistance, yDistance);
+	}
+
+	public void SendCreateEnemyBomb(int x, int y, float xDistance, float yDistance, int typeOfMovement){
+		allEnemyBombContainer.CreateEnemyBomb (x, y, xDistance, yDistance, typeOfMovement);
+		//print ("entra al game manager");
+	}
+
+	public void SendCreateDeathTrap(int x, int y, float xDistance, float yDistance){
+		allDeathTrapContainer.CreateDeathTrap (x, y, xDistance, yDistance);
+	}
+
+	public void SendCreateChangeDirectionBlock(int x, int y, float xDistance, float yDistance){
+		allChangeDirectionBlockContainer.CreateChangeDirectionBlock (x, y, xDistance, yDistance);
 	}
 
 	public void CreatePlayer(int x, int y, float xDistance, float yDistance){
@@ -115,7 +135,7 @@ public class GameManagerControl : MonoBehaviour {
 		}
 	}
 	public void IncreaseEnemiesDefeated(){
-		print ("entra");
+		//print ("entra");
 		currentEnemiesDefeat = currentEnemiesDefeat + 1;
 		CheckEnemiesDefeated ();
 	}

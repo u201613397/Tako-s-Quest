@@ -74,6 +74,7 @@ public class MapContainerControl : MonoBehaviour {
 					if (bgMatrixValues [j, i] != 1) {
 						tmp.GetComponent<MapPartControl> ().ChangeCollider (true);
 					}
+					//if (bgMatrixValues [j, i] == 1 || bgMatrixValues [j, i] == 9) {
 					if (bgMatrixValues [j, i] == 1) {
 						//tmp.GetComponent<MapPartControl> ().ChangeCollider (true);
 						tmp.GetComponent<MapPartControl> ().ChangeCollider (false);
@@ -89,6 +90,24 @@ public class MapContainerControl : MonoBehaviour {
 						gameManager.SendCreateEnemyMelee(j,i,xDistance,yDistance);//15-09-2018
 						//Instantiate (enemyToCreate, tmpPosition, transform.rotation);//15-09-2018
 					}//15-09-2018
+
+					if (bgMatrixValues [j, i] == 5) {//12-11-2018 BOMBA QUE SE MUEVE HORIZONTALMENTE
+						//print ("entra al 5");
+						//gameManager.SendCreateEnemyMelee(j,i,xDistance,yDistance);//15-09-2018
+						gameManager.SendCreateEnemyBomb(j,i,xDistance,yDistance,0);
+					}//12-11-2018 BOMBA QUE SE MUEVE HORIZONTALMENTE
+					if (bgMatrixValues [j, i] == 6) {//12-11-2018 BOMBA QUE SE MUEVE VERTICALMENTE
+						gameManager.SendCreateEnemyBomb(j,i,xDistance,yDistance,1);
+					}//12-11-2018 BOMBA QUE SE MUEVE VERTICALMENTE
+					if (bgMatrixValues [j, i] == 7) {//12-11-2018 BOMBA QUE SE MUEVE EN RECTÁNGULOS
+						gameManager.SendCreateEnemyBomb(j,i,xDistance,yDistance,2);
+					}//12-11-2018 BOMBA QUE SE MUEVE EN RECTÁNGULOS
+					if (bgMatrixValues [j, i] == 8) {//13-11-2018 TRAMPA QUE MATA AL CONTACTO
+						gameManager.SendCreateDeathTrap(j,i,xDistance,yDistance);
+					}//13-11-2018 TRAMPA QUE MATA AL CONTACTO
+					if (bgMatrixValues [j, i] == 9) {//13-11-2018 BLOQUE QUE CAMBIA LA DIRECCIÓN
+						gameManager.SendCreateChangeDirectionBlock(j,i,xDistance,yDistance);
+					}//13-11-2018 BLOQUE QUE CAMBIA LA DIRECCIÓN
 				}
 
 			}

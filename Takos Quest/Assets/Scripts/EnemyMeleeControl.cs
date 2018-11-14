@@ -57,7 +57,7 @@ public class EnemyMeleeControl : MonoBehaviour {
 		//Invoke ("Die", 1f);
 	}
 	public void Die(){
-		print ("entra al die");
+		//print ("entra al die");
 		enemyContainer.SendIncreaseEnemiesDefeated ();//04-11-2018 INCREMENTAR NÚMERO DE ENEMIGOS DERROTADOS
 		Destroy(gameObject);
 	}
