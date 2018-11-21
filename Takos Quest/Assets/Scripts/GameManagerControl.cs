@@ -30,6 +30,7 @@ public class GameManagerControl : MonoBehaviour {
 
 	[Header("Time Variables")]
 	public Text timeText;
+	private float initialTime;
 	public float levelTime = 180f;
 	public float decreaseTimeSpeed = 1f;
 	private int minutes;
@@ -38,6 +39,7 @@ public class GameManagerControl : MonoBehaviour {
 	[Header("Game State Variables")]
 	public bool isGameOver;
 	public bool isWin;
+	public int currentLevel; 
 
 	[Header("Win/Lose Condition Variables")]
 	public int winCondition;
@@ -50,13 +52,24 @@ public class GameManagerControl : MonoBehaviour {
 
 	[Header("Other Variables")]
 	public bool isTesting;
+	public GameObject handTutorial;
 
 	void Awake () {
 		GetLevelInformation ();
 		CheckMovements ();
 		CheckEnemiesDefeated ();
+		//RandomDivision ();
 	}
-
+	public void RandomDivision(){
+		int val = 15000;
+		int intervals = 3;
+		int first = Random.Range (0, val / intervals);
+		int second = Random.Range (0, val / intervals);
+		int third = 15000 - first - second;
+		print (first);
+		print (second);
+		print (third);
+	}
 	void Start () {
 		
 	}
@@ -119,9 +132,37 @@ public class GameManagerControl : MonoBehaviour {
 		}
 	}
 
+	void CalculateStarsToSave(){
+		int starsToSave = 0;
+		if (levelTime >= initialTime) {
+			starsToSave = 3;
+		}
+		if (levelTime <= initialTime && levelTime >= initialTime * 2 / 3) {
+			starsToSave = 3;
+		}
+		if (levelTime < initialTime * 2 / 3 && levelTime >= initialTime / 3) {
+			starsToSave = 2;
+		}
+		if (levelTime < initialTime / 3) {
+			starsToSave = 1;
+		}
+		string tmp = "Level" + currentLevel.ToString () + "StarsEarned";
+		int starsPrevious = PlayerPrefs.GetInt (tmp);
+		if (starsPrevious < starsToSave) {
+			PlayerPrefs.SetInt (tmp, starsToSave);
+		}
+		//print ("Estrellas ganadas nivel: " + currentLevel + " son " + starsToSave);
+		//print ("Estrellas previas nivel: " + currentLevel + " son " + starsPrevious);
+	}
+
 	void GetLevelInformation(){
 		if (isTesting == false) {
+			currentLevel = PlayerPrefs.GetInt ("CurrentLevel");
+			if (currentLevel == 1) {
+				handTutorial.gameObject.SetActive (true);
+			}
 			enemiesToDefeat = PlayerPrefs.GetInt ("EnemiesToDefeat");
+			initialTime = levelTime;
 			levelTime = PlayerPrefs.GetFloat ("LevelTime");
 			maxNumbOfMovements = PlayerPrefs.GetInt ("MaxNumbOfMovements");
 
@@ -133,6 +174,9 @@ public class GameManagerControl : MonoBehaviour {
 				allLoseCondition[i] = 	PlayerPrefs.GetInt (tmp, allLoseCondition[i]);
 			}
 		}
+	}
+	public void OcultHandTutorial(){
+		handTutorial.gameObject.SetActive (false);
 	}
 	public void IncreaseEnemiesDefeated(){
 		//print ("entra");
@@ -165,6 +209,7 @@ public class GameManagerControl : MonoBehaviour {
 	}
 	public void CheckGameState(){
 		if (isWin == true) {
+			CalculateStarsToSave ();
 			int level = PlayerPrefs.GetInt ("CurrentLevel");
 			string passedLevelPref = "Level" + level.ToString () + "Passed";
 			PlayerPrefs.SetInt (passedLevelPref, 1);
@@ -174,7 +219,7 @@ public class GameManagerControl : MonoBehaviour {
 			} else {
 				PlayerPrefs.SetInt ("ConversationMoment", 1);
 				conversationScene.ActivateLoadingCanvas ();
-			}
+			}	
 		}
 		if (isGameOver == true) {
 			gameplayScene.ActivateLoadingCanvas ();

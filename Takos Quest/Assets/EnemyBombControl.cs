@@ -43,11 +43,12 @@ public class EnemyBombControl : MonoBehaviour {
 			break;
 		}
 	}
-	public void SetInitialVariables(int movType){
+	public void SetInitialVariables(int movType, int direction){
 		typeOfMovement = movType;
+		speedMovement = Random.Range (1, 1.5f);
 		switch (typeOfMovement) {
 		case 0:
-			xDirection = 1;
+			xDirection = direction;
 			yDirection = 0;
 			rbEnemy.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
 			allGroundDetectors [0].canDetectTag = true;
@@ -58,7 +59,7 @@ public class EnemyBombControl : MonoBehaviour {
 			allGroundDetectors [3].gameObject.SetActive (false);
 			break;
 		case 1:
-			xDirection = 0;
+			xDirection = direction;
 			yDirection = 1;
 			rbEnemy.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 			allGroundDetectors [0].canDetectTag = false;
@@ -121,6 +122,11 @@ public class EnemyBombControl : MonoBehaviour {
 			yDirection = tmpY;
 			//detector.ActivateDetector (2);
 			break;
+		}
+	}
+	void OnTriggerEnter2D(Collider2D obj){
+		if (obj.gameObject.tag == "Player") {
+			obj.GetComponent<PlayerControl> ().Dead ();
 		}
 	}
 }

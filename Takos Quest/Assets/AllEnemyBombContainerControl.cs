@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class AllEnemyBombContainerControl : MonoBehaviour {
 
+	private int direction = 1;
+
 	[Header("Enemy Bomb Variables")]
 	public GameObject enemyToCreate;
 	public List<EnemyBombControl> allEnemyBombList;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,7 +23,8 @@ public class AllEnemyBombContainerControl : MonoBehaviour {
 		Vector3 tmpPosition = new Vector3 (x * xDistance, -y * yDistance, 0);
 		GameObject tmp = Instantiate (enemyToCreate, tmpPosition, transform.rotation);
 		tmp.transform.SetParent (this.transform);
-		tmp.GetComponent<EnemyBombControl> ().SetInitialVariables (typeOfMovement);
+		tmp.GetComponent<EnemyBombControl> ().SetInitialVariables (typeOfMovement,direction);
+		direction = direction * -1;
 		allEnemyBombList.Add (tmp.GetComponent<EnemyBombControl> ());
 		tmp.GetComponent<EnemyBombControl> ().enemyBombContainer = this.gameObject.GetComponent<AllEnemyBombContainerControl>();
 	}

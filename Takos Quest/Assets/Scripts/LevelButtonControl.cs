@@ -29,7 +29,8 @@ public class LevelButtonControl : MonoBehaviour {
 	[Header("Sound Variables")]
 	public PlaySoundControl allSounds;
 
-
+	[Header("Stars Variables")]
+	public StarsContainerControl starsContainer;
 	// Use this for initialization
 	void Awake () {
 		imageButton = GetComponent<Image> ();
@@ -68,8 +69,11 @@ public class LevelButtonControl : MonoBehaviour {
 			canSelectLevel = true;
 		}
 		SetButtonAppearance ();
+		//CalculateStars ();
 	}
-
+	public void CalculateStars(){
+		starsContainer.CheckForStars (levelValue);
+	}
 	public void SetButtonAppearance(){
 		Color colorText = imageButton.color;
 		if (canSelectLevel == true) {
@@ -78,9 +82,9 @@ public class LevelButtonControl : MonoBehaviour {
 				colorText.b = 1;
 
 		} else if (canSelectLevel == false) {
-				colorText.r = 0;
-				colorText.g = 0;
-				colorText.b = 0;
+				colorText.r = 0.5f;
+				colorText.g = 0.5f;
+				colorText.b = 0.5f;
 				
 			}
 		imageButton.color = colorText;

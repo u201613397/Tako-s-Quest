@@ -19,6 +19,7 @@ public class AllLevelButtonContainerControl : MonoBehaviour {
 		for (int i = 0; i < allLevelButtons.Count; i++) {
 			allLevelButtons [i].SetInitialValues (i+1);
 			allLevelButtons [i].CalculateLevelState ();
+			allLevelButtons [i].CalculateStars ();
 		}
 	}
 }

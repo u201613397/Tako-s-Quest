@@ -24,6 +24,16 @@ public class PlayerControl : MonoBehaviour {
 	public List<BoxCollider2D> allDirectionalColliders;
 	public BoxCollider2D currentDetectorCollider;
 
+	[Header("Detect Other Elements")]
+	public LayerMask whatIsImportant;
+	public List<Transform> allDirectionalOtherChecks;
+	public bool isLeftActivated;
+	public bool isRightActivated;
+	public bool isUpActivated;
+	public bool isDownActivated;
+	public bool canBeAffectedByOther;
+	private int otherLayer;
+
 	[Header("Detect Walls Variables")]
 	public LayerMask whatIsGround;//04-09-2018 LAYER DE LOS MUROS
 	//public Transform groundCheck;
@@ -61,6 +71,7 @@ public class PlayerControl : MonoBehaviour {
 		#endif
 */
 		CheckWalls ();
+		CheckOtherElements ();
 	}
 
 	public void PlayerMovement(){
@@ -118,6 +129,9 @@ public class PlayerControl : MonoBehaviour {
 			if (secondPressPos.y - firstPressPos.y > 0) {//up swipe
 				if (isUpGrounded == false && isGrounded == true) {
 					OnSwipeUp ();
+					if (gmManager.currentLevel == 1) {
+						gmManager.OcultHandTutorial ();
+					}
 					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			} else if (secondPressPos.y - firstPressPos.y < 0) {//Down swipe
@@ -132,11 +146,17 @@ public class PlayerControl : MonoBehaviour {
 			if (secondPressPos.x - firstPressPos.x > 0) {//Right swipe
 				if (isRightGrounded == false && isGrounded == true) {
 					OnSwipeRight ();
+					if (gmManager.currentLevel == 1) {
+						gmManager.OcultHandTutorial ();
+					}
 					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			} else if (secondPressPos.x - firstPressPos.x < 0) {//Left swipe
 				if (isLeftGrounded == false && isGrounded == true) {
 					OnSwipeLeft ();
+					if (gmManager.currentLevel == 1) {
+						gmManager.OcultHandTutorial ();
+					}
 					gmManager.IncreaseMovements ();//04-11-2018 INCREMENTAR NÚMERO DE MOVIMIENTOS
 				}
 			}
@@ -170,6 +190,9 @@ public class PlayerControl : MonoBehaviour {
 		isGrounded = false;
 		currentDirectionDetector = 2;//08-09-2018 EVITAR CAMBIAR DIRECCION
 		rbPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation; 
+		if (canBeAffectedByOther == false) {
+			Invoke ("ChangeAffected", 0.5f);
+		}
 	}
 	void OnSwipeLeft(){
 		Debug.Log("Swipe LEFT");
@@ -187,34 +210,82 @@ public class PlayerControl : MonoBehaviour {
 		currentDirectionDetector = 4;//08-09-2018 EVITAR CAMBIAR DIRECCION
 		rbPlayer.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; 
 	}
-		
+
+	void ChangeAffected(){
+		canBeAffectedByOther = true;
+	}
+
+	void CheckOtherElements(){
+		isUpActivated = Physics2D.Linecast (this.transform.position, allDirectionalOtherChecks [0].position, whatIsImportant);
+		RaycastHit2D hitInfoUp = Physics2D.Linecast (transform.position, allDirectionalOtherChecks [0].transform.position, whatIsImportant);
+
+		isDownActivated = Physics2D.Linecast (this.transform.position, allDirectionalOtherChecks [1].position, whatIsImportant);
+		RaycastHit2D hitInfoDown = Physics2D.Linecast (transform.position, allDirectionalOtherChecks [1].transform.position, whatIsImportant);
+
+		isLeftActivated = Physics2D.Linecast (this.transform.position, allDirectionalOtherChecks [2].position, whatIsImportant);
+		RaycastHit2D hitInfoLeft = Physics2D.Linecast (transform.position, allDirectionalOtherChecks [2].transform.position, whatIsImportant);
+
+		isRightActivated = Physics2D.Linecast (this.transform.position, allDirectionalOtherChecks [3].position, whatIsImportant);
+		RaycastHit2D hitInfoRight = Physics2D.Linecast (transform.position, allDirectionalOtherChecks [3].transform.position, whatIsImportant);
+
+		switch (currentDirectionDetector) {
+		case 1:
+			if (hitInfoUp.collider != null && hitInfoUp.collider.gameObject.tag == "ChangeDirection" && canBeAffectedByOther == true) {
+				canBeAffectedByOther = false;
+				OnSwipeDown ();
+			}
+			break;
+		case 2:
+			if (hitInfoDown.collider != null && hitInfoDown.collider.gameObject.tag == "ChangeDirection" && canBeAffectedByOther == true) {
+				canBeAffectedByOther = false;
+			}
+			break;
+		case 3:
+			if (hitInfoLeft.collider != null && hitInfoLeft.collider.gameObject.tag == "ChangeDirection" && canBeAffectedByOther == true) {
+				canBeAffectedByOther = false;
+				this.transform.position = new Vector2 (transform.position.x + 0.1f, transform.position.y);
+				OnSwipeDown ();
+			}
+			break;
+		case 4:
+			if (hitInfoRight.collider != null && hitInfoRight.collider.gameObject.tag == "ChangeDirection" && canBeAffectedByOther == true) {
+				canBeAffectedByOther = false;
+				this.transform.position = new Vector2 (transform.position.x - 0.1f, transform.position.y);
+				OnSwipeDown ();
+			}
+			break;
+		}
+
+	}
 	public void CheckWalls(){//04-09-2018 DETECTAR PAREDES
-		isUpGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[0].position, whatIsGround);
-		RaycastHit2D hitInfoUp = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[0].transform.position,whatIsGround);
+		isUpGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks [0].position, whatIsGround);
+		RaycastHit2D hitInfoUp = Physics2D.Linecast (transform.position, allDirectionalGroundChecks [0].transform.position, whatIsGround);
 
-		if (isUpGrounded == true && hitInfoUp.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+		/*
+		if (isUpGrounded == true && hitInfoUp.collider.gameObject.tag == "ChangeDirection" && isGrounded == true) {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
 			OnSwipeDown ();
 		}
+*/
 
-		isDownGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[1].position, whatIsGround);
-		RaycastHit2D hitInfoDown = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[1].transform.position,whatIsGround);
+		isDownGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks [1].position, whatIsGround);
+		RaycastHit2D hitInfoDown = Physics2D.Linecast (transform.position, allDirectionalGroundChecks [1].transform.position, whatIsGround);
 	
-		isLeftGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[2].position, whatIsGround);
-		RaycastHit2D hitInfoLeft = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[2].transform.position,whatIsGround);
+		isLeftGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks [2].position, whatIsGround);
+		RaycastHit2D hitInfoLeft = Physics2D.Linecast (transform.position, allDirectionalGroundChecks [2].transform.position, whatIsGround);
 	
-
-		if (isLeftGrounded == true && hitInfoLeft.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+		/*
+		if (isLeftGrounded == true && hitInfoLeft.collider.gameObject.tag == "ChangeDirection" && isGrounded == true) {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
 			OnSwipeDown ();
 		}
+*/
+		isRightGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks [3].position, whatIsGround);
+		RaycastHit2D hitInfoRight = Physics2D.Linecast (transform.position, allDirectionalGroundChecks [3].transform.position, whatIsGround);
 
-		isRightGrounded = Physics2D.Linecast (this.transform.position, allDirectionalGroundChecks[3].position, whatIsGround);
-		RaycastHit2D hitInfoRight = Physics2D.Linecast (transform.position, allDirectionalGroundChecks[3].transform.position,whatIsGround);
-
-
-		if (isRightGrounded == true && hitInfoRight.collider.gameObject.tag == "ChangeDirection") {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
+		/*
+		if (isRightGrounded == true && hitInfoRight.collider.gameObject.tag == "ChangeDirection" && isGrounded == true) {//14-11-2018 CAMBIAR DIRECCION DE MOVIMIENTO
 			OnSwipeDown ();
 		}
-
+*/
 
 		switch (currentDirectionDetector) {
 		case 1:
@@ -238,6 +309,7 @@ public class PlayerControl : MonoBehaviour {
 			}
 			break;
 		}
+
 	
 	}//04-09-2018 DETECTAR PAREDES
 
